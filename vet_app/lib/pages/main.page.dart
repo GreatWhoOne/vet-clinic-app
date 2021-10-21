@@ -13,6 +13,8 @@ class _MainPageState extends State<MainPage> {
   // render
   @override
   Widget build(BuildContext context) {
+    double h = 170.0;
+    double w = 160.0;
     return SafeArea(
       child: Scaffold(
         key: _globalKey,
@@ -62,52 +64,178 @@ class _MainPageState extends State<MainPage> {
                 ],
               ),
               width: 350.0,
-              height: 100.0,
-            ),
-            SizedBox(
-              height: 30,
+              height: 90.0,
             ),
             Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Container(
-                  decoration: BoxDecoration(
-                    color: Colors.blue,
+                  margin: const EdgeInsets.only(
+                    top: 10,
+                    left: 30,
+                    right: 10,
+                    bottom: 20,
                   ),
-                  width: 150.0,
-                  height: 100.0,
+                  height: h,
+                  width: w,
+                  decoration: BoxDecoration(
+                    color: Colors.pink,
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(10),
+                    ),
+                  ),
+                  child: SizedBox.expand(
+                    child: FlatButton(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Text(
+                            "Login",
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                              fontSize: 20,
+                            ),
+                            textAlign: TextAlign.left,
+                          ),
+                        ],
+                      ),
+                      onPressed: () {
+                        return print("Informações detalhadas");
+                      },
+                    ),
+                  ),
                 ),
                 Container(
+                  margin: const EdgeInsets.only(
+                    top: 10,
+                    left: 10,
+                    right: 30,
+                    bottom: 20,
+                  ),
+                  height: h,
+                  width: w,
                   decoration: BoxDecoration(
-                      // color: Colors.red,
-                      color: AppConsts.black),
-                  width: 150.0,
-                  height: 100.0,
-                )
+                    color: Colors.pink,
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(10),
+                    ),
+                  ),
+                  child: SizedBox.expand(
+                    child: FlatButton(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Text(
+                            "Login",
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                              fontSize: 20,
+                            ),
+                            textAlign: TextAlign.left,
+                          ),
+                        ],
+                      ),
+                      onPressed: () {
+                        return print("Informações detalhadas");
+                      },
+                    ),
+                  ),
+                ),
               ],
             ),
             Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Container(
-                  decoration: BoxDecoration(
-                    color: Colors.green,
+                  margin: const EdgeInsets.only(
+                    top: 10,
+                    left: 30,
+                    right: 10,
+                    bottom: 20,
                   ),
-                  width: 150.0,
-                  height: 100.0,
+                  height: h,
+                  width: w,
+                  decoration: BoxDecoration(
+                    color: Colors.pink,
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(10),
+                    ),
+                  ),
+                  child: SizedBox.expand(
+                    child: FlatButton(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Text(
+                            "Login",
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                              fontSize: 20,
+                            ),
+                            textAlign: TextAlign.left,
+                          ),
+                        ],
+                      ),
+                      onPressed: () {
+                        return print("Informações detalhadas");
+                      },
+                    ),
+                  ),
                 ),
                 Container(
-                  decoration: BoxDecoration(
-                    color: Colors.yellow,
+                  margin: const EdgeInsets.only(
+                    top: 10,
+                    left: 10,
+                    right: 30,
+                    bottom: 20,
                   ),
-                  width: 150.0,
-                  height: 100.0,
-                )
+                  height: h,
+                  width: w,
+                  decoration: BoxDecoration(
+                    color: Colors.pink,
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(10),
+                    ),
+                  ),
+                  child: SizedBox.expand(
+                    child: FlatButton(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Text(
+                            "Login",
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                              fontSize: 20,
+                            ),
+                            textAlign: TextAlign.left,
+                          ),
+                        ],
+                      ),
+                      onPressed: () {
+                        return print("Informações detalhadas");
+                      },
+                    ),
+                  ),
+                ),
               ],
+            ),
+            Divider(
+              height: 5,
+              thickness: 5,
+              color: Colors.grey,
             ),
           ],
         ),
       ),
     );
   }
+}
+
+Widget detailedInformations() {
+  return Text("teste");
 }

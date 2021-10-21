@@ -75,3 +75,6 @@ flutter:
 
   assets:
     - assets/logo.png
+    - assets/bell.png
+    - assets/home.png
+    - assets/settings.png
