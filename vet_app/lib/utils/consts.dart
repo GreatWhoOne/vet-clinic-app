@@ -33,9 +33,10 @@ class AppConsts {
 
   // Cores básicas
 
-  static Color redBasic = const Color(0xffcf0305);
-  static Color yellowBasic = const Color(0xffffff00);
-  static Color greenBasic = const Color(0xff00ff00);
+  static Color blueBasic = const Color(0xFFC6D7FB);
+  static Color orangeBasic = const Color(0xFFFAC5B6);
+  static Color purpleBasic = const Color(0xFF8F8AB7);
+  static Color pinkBasic = const Color(0xFFF0B0DA);
   static Color borderColor = Colors.black26;
   static Color black = const Color(0xff000000);
 

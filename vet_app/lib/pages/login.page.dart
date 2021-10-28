@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:vet_app/pages/main.page.dart';
 
 class LoginPage extends StatelessWidget {
   @override
@@ -17,7 +18,7 @@ class LoginPage extends StatelessWidget {
               width: 128,
               height: 128,
               child: Image.asset(
-                "assets/logo.png",
+                "assets/images/logo.png",
               ),
             ),
             SizedBox(
@@ -101,7 +102,14 @@ class LoginPage extends StatelessWidget {
                       ),
                     ],
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (BuildContext contex) => MainPage(),
+                      ),
+                    );
+                  },
                 ),
               ),
             ),
