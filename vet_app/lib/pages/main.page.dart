@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:vet_app/pages/scheduling/main.scheduling.page.dart';
 import 'package:vet_app/utils/common.dart';
 import 'package:vet_app/utils/consts.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -78,9 +79,65 @@ class _MainPageState extends State<MainPage> {
                   h,
                   w,
                 ),
-                schedulingButton(
-                  h,
-                  w,
+                Padding(
+                  padding: EdgeInsets.only(
+                    bottom: 10.0,
+                  ),
+                  child: Container(
+                    height: setHeight(180.0),
+                    width: setWidth(150.0),
+                    decoration: BoxDecoration(
+                      boxShadow: [
+                        BoxShadow(
+                          spreadRadius: 3,
+                          blurRadius: 5,
+                          offset: Offset(2, 4),
+                          color: Colors.grey.shade300,
+                        ),
+                      ],
+                      color: AppConsts.blueBasic,
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(10),
+                      ),
+                    ),
+                    child: SizedBox.expand(
+                      child: FlatButton(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Padding(
+                              padding: EdgeInsets.only(bottom: 10),
+                              child: SizedBox(
+                                child: Image.asset("assets/icons/calendar.png"),
+                                height: 48,
+                                width: 48,
+                              ),
+                            ),
+                            FittedBox(
+                              child: Text(
+                                "Agendamentos",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
+                                  fontSize: 17,
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
+                            )
+                          ],
+                        ),
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (BuildContext contex) =>
+                                  MainSchedulling(),
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+                  ),
                 ),
               ],
             ),
@@ -269,62 +326,67 @@ Widget medicineButton(h, w) {
   );
 }
 
-Widget schedulingButton(h, w) {
-  return Padding(
-    padding: EdgeInsets.only(
-      bottom: 10.0,
-    ),
-    child: Container(
-      height: h,
-      width: w,
-      decoration: BoxDecoration(
-        boxShadow: [
-          BoxShadow(
-            spreadRadius: 3,
-            blurRadius: 5,
-            offset: Offset(2, 4),
-            color: Colors.grey.shade300,
-          ),
-        ],
-        color: AppConsts.blueBasic,
-        borderRadius: BorderRadius.all(
-          Radius.circular(10),
-        ),
-      ),
-      child: SizedBox.expand(
-        child: FlatButton(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Padding(
-                padding: EdgeInsets.only(bottom: 10),
-                child: SizedBox(
-                  child: Image.asset("assets/icons/calendar.png"),
-                  height: 48,
-                  width: 48,
-                ),
-              ),
-              FittedBox(
-                child: Text(
-                  "Agendamentos",
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                    fontSize: 17,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-              )
-            ],
-          ),
-          onPressed: () {
-            return print("Agendamentos");
-          },
-        ),
-      ),
-    ),
-  );
-}
+// Widget schedulingButton(h, w) {
+//   return Padding(
+//     padding: EdgeInsets.only(
+//       bottom: 10.0,
+//     ),
+//     child: Container(
+//       height: h,
+//       width: w,
+//       decoration: BoxDecoration(
+//         boxShadow: [
+//           BoxShadow(
+//             spreadRadius: 3,
+//             blurRadius: 5,
+//             offset: Offset(2, 4),
+//             color: Colors.grey.shade300,
+//           ),
+//         ],
+//         color: AppConsts.blueBasic,
+//         borderRadius: BorderRadius.all(
+//           Radius.circular(10),
+//         ),
+//       ),
+//       child: SizedBox.expand(
+//         child: FlatButton(
+//           child: Column(
+//             mainAxisAlignment: MainAxisAlignment.center,
+//             children: <Widget>[
+//               Padding(
+//                 padding: EdgeInsets.only(bottom: 10),
+//                 child: SizedBox(
+//                   child: Image.asset("assets/icons/calendar.png"),
+//                   height: 48,
+//                   width: 48,
+//                 ),
+//               ),
+//               FittedBox(
+//                 child: Text(
+//                   "Agendamentos",
+//                   style: TextStyle(
+//                     fontWeight: FontWeight.bold,
+//                     color: Colors.white,
+//                     fontSize: 17,
+//                   ),
+//                   textAlign: TextAlign.center,
+//                 ),
+//               )
+//             ],
+//           ),
+//           onPressed: () {
+//             Navigator.push(
+//               context,
+//               MaterialPageRoute(
+//                 builder: (BuildContext contex) => MainPage(),
+//               ),
+//             );
+//           },
+//         ),
+//       ),
+//     ),
+//   );
+// }
 
 Widget detailedInformationButton(h, w) {
   return Padding(

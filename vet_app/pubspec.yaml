@@ -81,3 +81,6 @@ flutter:
     - assets/icons/medicine.png
     - assets/icons/vaccine.png
     - assets/images/man.jpeg
+    - assets/icons/home.png
+    - assets/icons/bell.png
+    - assets/icons/settings.png
