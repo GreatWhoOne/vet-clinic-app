@@ -28,7 +28,65 @@ class _NewSchedullingState extends State<NewSchedulling> {
         backgroundColor: Colors.transparent,
         elevation: 0.0,
       ),
-      body: Column(),
+      body: Column(
+        children: [
+          Text(
+            "Selecione uma data",
+          ),
+          Container(
+            child: Container(
+              height: setHeight(100.0),
+              width: setWidth(150.0),
+              decoration: BoxDecoration(
+                boxShadow: [
+                  BoxShadow(
+                    spreadRadius: 3,
+                    blurRadius: 5,
+                    offset: Offset(2, 4),
+                    color: Colors.grey.shade300,
+                  ),
+                ],
+                color: AppConsts.blueBasic,
+                borderRadius: BorderRadius.all(
+                  Radius.circular(10),
+                ),
+              ),
+              child: SizedBox.expand(
+                child: FlatButton(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Padding(
+                        padding: EdgeInsets.only(bottom: 10),
+                      ),
+                      FittedBox(
+                        child: Text(
+                          "Pesquisar",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                            fontSize: 17,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                      )
+                    ],
+                  ),
+                  onPressed: () {
+                    // Send to available vet
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (BuildContext contex) => NewSchedulling(),
+                      ),
+                    );
+                  },
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
