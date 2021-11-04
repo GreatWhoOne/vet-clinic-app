@@ -33,111 +33,113 @@ class _NewSchedullingState extends State<NewSchedulling> {
         backgroundColor: Colors.transparent,
         elevation: 0.0,
       ),
-      body: Column(
-        children: [
-          Container(
-            margin: const EdgeInsets.fromLTRB(25, 25, 25, 25),
-            child: Text.rich(
-              TextSpan(
-                children: [
-                  TextSpan(
-                    text: 'Seleciona a data desejada para ',
-                    style: TextStyle(
-                      fontSize: 20,
-                    ),
-                  ),
-                  TextSpan(
-                    text: ' \nconsulta',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 25,
-                    ),
-                  )
-                ],
-              ),
-            ),
-          ),
-
-          // Adicionar Date picker
-
-          SizedBox(
-            height: setHeight(100.0),
-          ),
-
-          Text(
-            _dateTime == null
-                ? 'Nenhuma data selecionada ainda'
-                : _dateTime.toString(),
-          ),
-
-          RaisedButton(
-              child: Text('Selecionar data'),
-              onPressed: () {
-                showDatePicker(
-                  context: context,
-                  initialDate: DateTime.now(),
-                  firstDate: DateTime(2001),
-                  lastDate: DateTime(2222),
-                ).then((date) => {
-                      setState(() => {_dateTime = date}),
-                    });
-              }),
-
-          SizedBox(
-            height: setHeight(150.0),
-          ),
-
-          Center(
-            child: Container(
-              height: setHeight(60.0),
-              width: setWidth(300.0),
-              decoration: BoxDecoration(
-                boxShadow: [
-                  BoxShadow(
-                    spreadRadius: 3,
-                    blurRadius: 5,
-                    offset: Offset(2, 4),
-                    color: Colors.grey.shade300,
-                  ),
-                ],
-                color: AppConsts.blueBasic,
-                borderRadius: BorderRadius.all(
-                  Radius.circular(10),
-                ),
-              ),
-              child: SizedBox.expand(
-                child: FlatButton(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      FittedBox(
-                        child: Text(
-                          "Pesquisar",
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                            fontSize: 17,
-                          ),
-                          textAlign: TextAlign.center,
-                        ),
-                      )
-                    ],
-                  ),
-                  onPressed: () {
-                    // Send to available vet
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (BuildContext contex) =>
-                            AvailableVeterinaies(),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Container(
+              margin: const EdgeInsets.fromLTRB(25, 25, 25, 25),
+              child: Text.rich(
+                TextSpan(
+                  children: [
+                    TextSpan(
+                      text: 'Seleciona a data desejada para ',
+                      style: TextStyle(
+                        fontSize: 20,
                       ),
-                    );
-                  },
+                    ),
+                    TextSpan(
+                      text: ' \nconsulta',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 25,
+                      ),
+                    )
+                  ],
                 ),
               ),
             ),
-          ),
-        ],
+
+            // Adicionar Date picker
+
+            SizedBox(
+              height: setHeight(100.0),
+            ),
+
+            Text(
+              _dateTime == null
+                  ? 'Nenhuma data selecionada ainda'
+                  : _dateTime.toString(),
+            ),
+
+            RaisedButton(
+                child: Text('Selecionar data'),
+                onPressed: () {
+                  showDatePicker(
+                    context: context,
+                    initialDate: DateTime.now(),
+                    firstDate: DateTime(2001),
+                    lastDate: DateTime(2222),
+                  ).then((date) => {
+                        setState(() => {_dateTime = date}),
+                      });
+                }),
+
+            SizedBox(
+              height: setHeight(150.0),
+            ),
+
+            Center(
+              child: Container(
+                height: setHeight(60.0),
+                width: setWidth(300.0),
+                decoration: BoxDecoration(
+                  boxShadow: [
+                    BoxShadow(
+                      spreadRadius: 3,
+                      blurRadius: 5,
+                      offset: Offset(2, 4),
+                      color: Colors.grey.shade300,
+                    ),
+                  ],
+                  color: AppConsts.blueBasic,
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(10),
+                  ),
+                ),
+                child: SizedBox.expand(
+                  child: FlatButton(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        FittedBox(
+                          child: Text(
+                            "Pesquisar",
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                              fontSize: 17,
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
+                        )
+                      ],
+                    ),
+                    onPressed: () {
+                      // Send to available vet
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (BuildContext contex) =>
+                              AvailableVeterinaies(),
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
@@ -146,12 +148,12 @@ class _NewSchedullingState extends State<NewSchedulling> {
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.business),
-            label: 'Business',
+            icon: Icon(Icons.home),
+            label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.school),
-            label: 'School',
+            icon: Icon(Icons.home),
+            label: 'home',
           ),
         ],
         // currentIndex: _selectedIndex,
