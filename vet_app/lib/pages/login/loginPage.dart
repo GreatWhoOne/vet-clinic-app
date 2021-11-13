@@ -3,6 +3,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:vet_app/pages/main.page.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:vet_app/pages/login/createAccount.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -148,13 +149,13 @@ class _LoginPageState extends State<LoginPage> {
                     ],
                   ),
                   onPressed: () {
-                    getUsers();
-                    // Navigator.push(
-                    //   context,
-                    //   MaterialPageRoute(
-                    //     builder: (BuildContext contex) => MainPage(),
-                    //   ),
-                    // );
+                    // getUsers();
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (BuildContext contex) => MainPage(),
+                      ),
+                    );
                   },
                 ),
               ),
@@ -171,7 +172,14 @@ class _LoginPageState extends State<LoginPage> {
                       // fontWeight: FontWeight.bold,
                       fontSize: 15,
                     )),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (BuildContext contex) => CreatAccount(),
+                    ),
+                  );
+                },
               ),
             ),
           ],
