@@ -1,7 +1,50 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:vet_app/pages/main.page.dart';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
+  @override
+  _LoginPageState createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  TextEditingController controlUsuario = new TextEditingController();
+  TextEditingController controlSenha = new TextEditingController();
+
+  Future<List> getUsers() async {
+    var url = "http://192.168.0.102/flutter-app/obterUsuario.php";
+    final response = await http.post(
+      url,
+      body: {
+        "email": controlUsuario.text,
+        "senha": controlSenha.text,
+      },
+    );
+
+    if (response.body == "CORRETO") {
+      Fluttertoast.showToast(
+        msg: "Bom",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.CENTER,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.red,
+        textColor: Colors.white,
+        fontSize: 16.0,
+      );
+    } else if (response.body == "ERROR") {
+      Fluttertoast.showToast(
+          msg: "Ruim",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.CENTER,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16.0);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,6 +68,7 @@ class LoginPage extends StatelessWidget {
               height: 80,
             ),
             TextFormField(
+              controller: controlUsuario,
               autofocus: true,
               keyboardType: TextInputType.emailAddress,
               decoration: InputDecoration(
@@ -43,6 +87,7 @@ class LoginPage extends StatelessWidget {
               height: 10,
             ),
             TextFormField(
+              controller: controlSenha,
               keyboardType: TextInputType.text,
               obscureText: true,
               decoration: InputDecoration(
@@ -103,12 +148,13 @@ class LoginPage extends StatelessWidget {
                     ],
                   ),
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (BuildContext contex) => MainPage(),
-                      ),
-                    );
+                    getUsers();
+                    // Navigator.push(
+                    //   context,
+                    //   MaterialPageRoute(
+                    //     builder: (BuildContext contex) => MainPage(),
+                    //   ),
+                    // );
                   },
                 ),
               ),
