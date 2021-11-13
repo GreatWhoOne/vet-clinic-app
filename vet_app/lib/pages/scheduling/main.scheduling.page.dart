@@ -151,12 +151,12 @@ class _MainSchedullingState extends State<MainSchedulling> {
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.business),
-            label: 'Business',
+            icon: Icon(Icons.home),
+            label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.school),
-            label: 'School',
+            icon: Icon(Icons.home),
+            label: 'Home',
           ),
         ],
         // currentIndex: _selectedIndex,

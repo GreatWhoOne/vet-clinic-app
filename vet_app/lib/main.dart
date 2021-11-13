@@ -9,13 +9,6 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    // Test connection firebase
-    // Firestore.instance.collection('agendamentos').getDocuments().then(
-    //       (value) => {
-    //         value.documents.forEach((element) => {print(element.data)})
-    //       },
-    //     );
-
     return MaterialApp(
       title: 'VetApp',
       debugShowCheckedModeBanner: false,

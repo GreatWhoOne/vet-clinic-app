@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:vet_app/pages/scheduling/main.scheduling.page.dart';
 import 'package:vet_app/utils/common.dart';
 import 'package:vet_app/utils/consts.dart';
-import 'package:carousel_slider/carousel_slider.dart';
+// import 'package:carousel_slider/carousel_slider.dart';
 
 class MainPage extends StatefulWidget {
   @override
