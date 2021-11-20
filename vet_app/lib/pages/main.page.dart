@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:vet_app/pages/scheduling/main.scheduling.page.dart';
+import 'package:vet_app/pages/scheduling/mainScheduling.dart';
 import 'package:vet_app/utils/common.dart';
 import 'package:vet_app/utils/consts.dart';
 // import 'package:carousel_slider/carousel_slider.dart';
 
 class MainPage extends StatefulWidget {
+  final String text;
+  MainPage({Key key, @required this.text}) : super(key: key);
   @override
   _MainPageState createState() => _MainPageState();
 }
@@ -59,18 +61,31 @@ class _MainPageState extends State<MainPage> {
                     _globalKey.currentState.openDrawer();
                   },
                 ),
-                CircleAvatar(
-                  radius: 40.0,
-                  backgroundImage: AssetImage("assets/images/man.jpeg"),
-                ),
-                // IconButton(
-                //   icon: Icon(Icons.person_rounded),
-                //   iconSize: 50.0,
-                //   onPressed: () {},
+                // CircleAvatar(
+                //   radius: 40.0,
+                //   backgroundImage: AssetImage("assets/images/man.jpeg"),
                 // ),
+                IconButton(
+                  icon: Icon(Icons.person_rounded),
+                  iconSize: 50.0,
+                  onPressed: () {},
+                ),
               ],
             ),
-            userName(),
+            // userName(),
+            Padding(
+              padding: EdgeInsets.only(
+                bottom: 10.0,
+              ),
+              child: Text(
+                "Olá, ${widget.text}",
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 25.0,
+                  color: Colors.grey,
+                ),
+              ),
+            ),
             summaryInformations(),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -168,21 +183,22 @@ class _MainPageState extends State<MainPage> {
 //   );
 // }
 
-Widget userName() {
-  return Padding(
-    padding: EdgeInsets.only(
-      bottom: 10.0,
-    ),
-    child: Text(
-      "Olá, George",
-      style: TextStyle(
-        fontWeight: FontWeight.bold,
-        fontSize: 25.0,
-        color: Colors.grey,
-      ),
-    ),
-  );
-}
+// Widget userName() {
+//   return Padding(
+//     padding: EdgeInsets.only(
+//       bottom: 10.0,
+//     ),
+//     child: Text(
+//       name,
+//       "Olá, ",
+//       style: TextStyle(
+//         fontWeight: FontWeight.bold,
+//         fontSize: 25.0,
+//         color: Colors.grey,
+//       ),
+//     ),
+//   );
+// }
 
 Widget summaryInformations() {
   return Padding(

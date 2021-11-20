@@ -14,8 +14,8 @@ class _LoginPageState extends State<LoginPage> {
   TextEditingController controlUsuario = new TextEditingController();
   TextEditingController controlSenha = new TextEditingController();
 
-  Future<List> getUsers() async {
-    var url = "http://192.168.0.102/flutter-app/obterUsuario.php";
+  Future getUsers() async {
+    var url = "http://192.168.0.103/flutter-app/obterUsuario.php";
     final response = await http.post(
       url,
       body: {
@@ -23,10 +23,11 @@ class _LoginPageState extends State<LoginPage> {
         "senha": controlSenha.text,
       },
     );
+    print(response.body);
 
     if (response.body == "CORRETO") {
       Fluttertoast.showToast(
-        msg: "Bom",
+        msg: "Logado com sucesso",
         toastLength: Toast.LENGTH_SHORT,
         gravity: ToastGravity.CENTER,
         timeInSecForIosWeb: 1,
@@ -34,15 +35,23 @@ class _LoginPageState extends State<LoginPage> {
         textColor: Colors.white,
         fontSize: 16.0,
       );
+      String name = controlUsuario.text;
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => MainPage(text: name),
+        ),
+      );
     } else if (response.body == "ERROR") {
       Fluttertoast.showToast(
-          msg: "Ruim",
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.CENTER,
-          timeInSecForIosWeb: 1,
-          backgroundColor: Colors.red,
-          textColor: Colors.white,
-          fontSize: 16.0);
+        msg: "Email ou senha incorretos",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.CENTER,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.blue,
+        textColor: Colors.white,
+        fontSize: 16.0,
+      );
     }
   }
 
@@ -149,13 +158,7 @@ class _LoginPageState extends State<LoginPage> {
                     ],
                   ),
                   onPressed: () {
-                    // getUsers();
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (BuildContext contex) => MainPage(),
-                      ),
-                    );
+                    getUsers();
                   },
                 ),
               ),

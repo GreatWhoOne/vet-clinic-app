@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:vet_app/utils/common.dart';
 import 'package:vet_app/utils/consts.dart';
 
-import '../main.page.dart';
-import 'newScheduling.page.dart';
+import 'availableVeterinaries.dart';
 
 class MainSchedulling extends StatefulWidget {
   MainSchedulling({Key key}) : super(key: key);
@@ -82,7 +81,8 @@ class _MainSchedullingState extends State<MainSchedulling> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (BuildContext contex) => NewSchedulling(),
+                        builder: (BuildContext context) =>
+                            AvailableVeterinaies(),
                       ),
                     );
                   },

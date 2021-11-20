@@ -18,7 +18,7 @@ class _AvailableVeterinaiesState extends State<AvailableVeterinaies> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Consultas disponíveis",
+          "Veterinários disponíveis",
           style: TextStyle(
             fontWeight: FontWeight.bold,
             color: AppConsts.black,
@@ -29,7 +29,9 @@ class _AvailableVeterinaiesState extends State<AvailableVeterinaies> {
         backgroundColor: Colors.transparent,
         elevation: 0.0,
       ),
-      body: Text("Teste pagina de consultas"),
+      body: Text("Listar todos os veterinários"),
     );
   }
 }
+
+// var url = "http://192.168.0.103/flutter-app/obterVeterinario.php";

@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:vet_app/utils/common.dart';
 import 'package:vet_app/utils/consts.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 import 'loginPage.dart';
 
@@ -13,6 +16,73 @@ class CreatAccount extends StatefulWidget {
 }
 
 class _CreatAccountState extends State<CreatAccount> {
+  TextEditingController nomeUsuario = new TextEditingController();
+  // TextEditingController cpf = new TextEditingController();
+  // TextEditingController email = new TextEditingController();
+  // TextEditingController endereco = new TextEditingController();
+  TextEditingController senha = new TextEditingController();
+
+  Future register() async {
+    var url = "http://192.168.0.103/flutter-app/registrar.php";
+    final response = await http.post(
+      url,
+      body: {
+        "nome": nomeUsuario.text,
+        "senha": senha.text,
+      },
+    );
+
+    var data = json.decode(response.body);
+    if (data == "Success") {
+      Fluttertoast.showToast(
+        msg: "Bom",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.CENTER,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.red,
+        textColor: Colors.white,
+        fontSize: 16.0,
+      );
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => LoginPage(),
+        ),
+      );
+    } else {
+      Fluttertoast.showToast(
+        msg: "Ruim",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.CENTER,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.red,
+        textColor: Colors.white,
+        fontSize: 16.0,
+      );
+    }
+
+    // if (response.body == "CORRETO") {
+    //   Fluttertoast.showToast(
+    //     msg: "Bom",
+    //     toastLength: Toast.LENGTH_SHORT,
+    //     gravity: ToastGravity.CENTER,
+    //     timeInSecForIosWeb: 1,
+    //     backgroundColor: Colors.red,
+    //     textColor: Colors.white,
+    //     fontSize: 16.0,
+    //   );
+    // } else if (response.body == "ERROR") {
+    //   Fluttertoast.showToast(
+    //       msg: "Ruim",
+    //       toastLength: Toast.LENGTH_SHORT,
+    //       gravity: ToastGravity.CENTER,
+    //       timeInSecForIosWeb: 1,
+    //       backgroundColor: Colors.red,
+    //       textColor: Colors.white,
+    //       fontSize: 16.0);
+    // }
+  }
+
   @override
   Widget build(BuildContext context) {
     AppConsts.setWidhtSize(MediaQuery.of(context).size.width);
@@ -42,9 +112,9 @@ class _CreatAccountState extends State<CreatAccount> {
           child: ListView(
             children: <Widget>[
               TextFormField(
-                // controller: controlUsuario,
+                controller: nomeUsuario,
                 autofocus: true,
-                keyboardType: TextInputType.emailAddress,
+                keyboardType: TextInputType.text,
                 decoration: InputDecoration(
                   prefixIcon: Icon(Icons.person_rounded),
                   labelText: "Nome completo",
@@ -58,43 +128,40 @@ class _CreatAccountState extends State<CreatAccount> {
                   fontSize: 20,
                 ),
               ),
-              TextFormField(
-                // controller: controlSenha,
-                keyboardType: TextInputType.text,
-
-                decoration: InputDecoration(
-                  prefixIcon: Icon(Icons.email),
-                  labelText: "E-mail",
-                  labelStyle: TextStyle(
-                    color: Colors.black38,
-                    fontWeight: FontWeight.w400,
-                    fontSize: 20,
-                  ),
-                ),
-                style: TextStyle(fontSize: 20),
-              ),
-              TextFormField(
-                // controller: controlSenha,
-                keyboardType: TextInputType.text,
-
-                decoration: InputDecoration(
-                  prefixIcon: Icon(Icons.location_on),
-                  labelText: "Endereço",
-                  labelStyle: TextStyle(
-                    color: Colors.black38,
-                    fontWeight: FontWeight.w400,
-                    fontSize: 20,
-                  ),
-                ),
-                style: TextStyle(fontSize: 20),
-              ),
+              // TextFormField(
+              //   controller: email,
+              //   keyboardType: TextInputType.text,
+              //   decoration: InputDecoration(
+              //     prefixIcon: Icon(Icons.email),
+              //     labelText: "E-mail",
+              //     labelStyle: TextStyle(
+              //       color: Colors.black38,
+              //       fontWeight: FontWeight.w400,
+              //       fontSize: 20,
+              //     ),
+              //   ),
+              //   style: TextStyle(fontSize: 20),
+              // ),
+              // TextFormField(
+              //   controller: cpf,
+              //   keyboardType: TextInputType.text,
+              //   decoration: InputDecoration(
+              //     prefixIcon: Icon(Icons.location_on),
+              //     labelText: "CPF",
+              //     labelStyle: TextStyle(
+              //       color: Colors.black38,
+              //       fontWeight: FontWeight.w400,
+              //       fontSize: 20,
+              //     ),
+              //   ),
+              //   style: TextStyle(fontSize: 20),
+              // ),
               TextFormField(
                 obscureText: true,
                 enableSuggestions: false,
                 autocorrect: false,
-                // controller: controlSenha,
+                controller: senha,
                 keyboardType: TextInputType.text,
-
                 decoration: InputDecoration(
                   prefixIcon: Icon(Icons.lock),
                   labelText: "Senha",
@@ -142,7 +209,9 @@ class _CreatAccountState extends State<CreatAccount> {
                         ),
                       ],
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      register();
+                    },
                   ),
                 ),
               ),

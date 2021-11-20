@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:vet_app/utils/common.dart';
 import 'package:vet_app/utils/consts.dart';
 import 'package:flutter/cupertino.dart';
-
-import 'availableVeterinaries.page.dart';
+import 'package:intl/intl.dart';
+import 'availableVeterinaries.dart';
 
 class NewSchedulling extends StatefulWidget {
   NewSchedulling({Key key}) : super(key: key);
@@ -68,7 +68,10 @@ class _NewSchedullingState extends State<NewSchedulling> {
             Text(
               _dateTime == null
                   ? 'Nenhuma data selecionada ainda'
-                  : _dateTime.toString(),
+                  // : DateFormat('yyyy-MM-dd').format(_dateTime),
+                  : DateFormat('dd-MM-yyyy').format(_dateTime),
+
+              // : _dateTime.toString(),
             ),
 
             RaisedButton(
@@ -78,7 +81,7 @@ class _NewSchedullingState extends State<NewSchedulling> {
                     context: context,
                     initialDate: DateTime.now(),
                     firstDate: DateTime(2001),
-                    lastDate: DateTime(2222),
+                    lastDate: DateTime(2023),
                   ).then((date) => {
                         setState(() => {_dateTime = date}),
                       });
@@ -125,14 +128,16 @@ class _NewSchedullingState extends State<NewSchedulling> {
                       ],
                     ),
                     onPressed: () {
+                      print(_dateTime);
+
                       // Send to available vet
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (BuildContext contex) =>
-                              AvailableVeterinaies(),
-                        ),
-                      );
+                      // Navigator.push(
+                      //   context,
+                      //   MaterialPageRoute(
+                      //     builder: (BuildContext contex) =>
+                      //         AvailableVeterinaies(),
+                      //   ),
+                      // );
                     },
                   ),
                 ),
