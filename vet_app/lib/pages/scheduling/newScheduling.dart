@@ -3,6 +3,7 @@ import 'package:vet_app/utils/common.dart';
 import 'package:vet_app/utils/consts.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:intl/intl.dart';
+
 import 'availableVeterinaries.dart';
 
 class NewSchedulling extends StatefulWidget {
@@ -127,17 +128,18 @@ class _NewSchedullingState extends State<NewSchedulling> {
                         )
                       ],
                     ),
-                    onPressed: () {
+                    onPressed: () async {
                       print(_dateTime);
 
-                      // Send to available vet
-                      // Navigator.push(
-                      //   context,
-                      //   MaterialPageRoute(
-                      //     builder: (BuildContext contex) =>
-                      //         AvailableVeterinaies(),
-                      //   ),
-                      // );
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (BuildContext contex) =>
+                              AvailableVeterinaies(
+                            date: _dateTime,
+                          ),
+                        ),
+                      );
                     },
                   ),
                 ),

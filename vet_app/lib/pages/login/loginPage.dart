@@ -2,10 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:vet_app/pages/main.page.dart';
 import 'dart:convert';
+
 import 'package:http/http.dart' as http;
 import 'package:vet_app/pages/login/createAccount.dart';
 
 class LoginPage extends StatefulWidget {
+  List idUser;
+
+  String formattedIdUser;
+  String formattedIdUserName;
+  LoginPage({Key key, @required this.formattedIdUser, this.idUser})
+      : super(key: key);
+
   @override
   _LoginPageState createState() => _LoginPageState();
 }
@@ -23,7 +31,6 @@ class _LoginPageState extends State<LoginPage> {
         "senha": controlSenha.text,
       },
     );
-    print(response.body);
 
     if (response.body == "CORRETO") {
       Fluttertoast.showToast(
@@ -35,11 +42,13 @@ class _LoginPageState extends State<LoginPage> {
         textColor: Colors.white,
         fontSize: 16.0,
       );
-      String name = controlUsuario.text;
+
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => MainPage(text: name),
+          builder: (context) => MainPage(
+              idUser: widget.formattedIdUser.toString(),
+              userName: widget.formattedIdUserName),
         ),
       );
     } else if (response.body == "ERROR") {
@@ -53,6 +62,34 @@ class _LoginPageState extends State<LoginPage> {
         fontSize: 16.0,
       );
     }
+  }
+
+  Future getUserId() async {
+    var url = "http://192.168.0.103/flutter-app/obterIdProprietario.php";
+    final response = await http.post(
+      url,
+      body: {
+        "email": controlUsuario.text,
+      },
+    );
+
+    var idUser = json.decode(response.body);
+
+    widget.formattedIdUser = idUser[0]["ID_PROPRIETARIO"];
+  }
+
+  Future getUserName() async {
+    var url = "http://192.168.0.103/flutter-app/userName.php";
+    final response = await http.post(
+      url,
+      body: {
+        "email": controlUsuario.text,
+      },
+    );
+
+    var idUser = json.decode(response.body);
+
+    widget.formattedIdUserName = idUser[0]["NOME"];
   }
 
   @override
@@ -159,6 +196,8 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   onPressed: () {
                     getUsers();
+                    getUserId();
+                    getUserName();
                   },
                 ),
               ),

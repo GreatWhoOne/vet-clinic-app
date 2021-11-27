@@ -5,8 +5,9 @@ import 'package:vet_app/utils/consts.dart';
 // import 'package:carousel_slider/carousel_slider.dart';
 
 class MainPage extends StatefulWidget {
-  final String text;
-  MainPage({Key key, @required this.text}) : super(key: key);
+  final String idUser;
+  final String userName;
+  MainPage({Key key, @required this.idUser, this.userName}) : super(key: key);
   @override
   _MainPageState createState() => _MainPageState();
 }
@@ -78,7 +79,7 @@ class _MainPageState extends State<MainPage> {
                 bottom: 10.0,
               ),
               child: Text(
-                "Olá, ${widget.text}",
+                "Olá, ${widget.userName}",
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 25.0,
