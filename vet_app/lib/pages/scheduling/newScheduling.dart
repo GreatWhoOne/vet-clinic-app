@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:vet_app/utils/common.dart';
 import 'package:vet_app/utils/consts.dart';
 import 'package:flutter/cupertino.dart';
@@ -7,7 +8,10 @@ import 'package:intl/intl.dart';
 import 'availableVeterinaries.dart';
 
 class NewSchedulling extends StatefulWidget {
-  NewSchedulling({Key key}) : super(key: key);
+  final String idUser;
+  final String userName;
+  NewSchedulling({Key key, @required this.idUser, this.userName})
+      : super(key: key);
 
   @override
   _NewSchedullingState createState() => _NewSchedullingState();
@@ -130,16 +134,29 @@ class _NewSchedullingState extends State<NewSchedulling> {
                     ),
                     onPressed: () async {
                       print(_dateTime);
-
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (BuildContext contex) =>
-                              AvailableVeterinaies(
-                            date: _dateTime,
+                      if (_dateTime == null) {
+                        Fluttertoast.showToast(
+                          msg: "Escolha uma data",
+                          toastLength: Toast.LENGTH_SHORT,
+                          gravity: ToastGravity.CENTER,
+                          timeInSecForIosWeb: 1,
+                          backgroundColor: Colors.blue,
+                          textColor: Colors.white,
+                          fontSize: 16.0,
+                        );
+                      } else {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (BuildContext contex) =>
+                                AvailableVeterinaies(
+                              date: _dateTime,
+                              idUser: widget.idUser,
+                              userName: widget.userName,
+                            ),
                           ),
-                        ),
-                      );
+                        );
+                      }
                     },
                   ),
                 ),

@@ -5,7 +5,10 @@ import 'package:vet_app/utils/consts.dart';
 import 'newScheduling.dart';
 
 class MainSchedulling extends StatefulWidget {
-  MainSchedulling({Key key}) : super(key: key);
+  final String idUser;
+  final String userName;
+  MainSchedulling({Key key, @required this.idUser, this.userName})
+      : super(key: key);
 
   @override
   _MainSchedullingState createState() => _MainSchedullingState();
@@ -81,7 +84,10 @@ class _MainSchedullingState extends State<MainSchedulling> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (BuildContext context) => NewSchedulling(),
+                        builder: (BuildContext context) => NewSchedulling(
+                          idUser: widget.idUser,
+                          userName: widget.userName,
+                        ),
                       ),
                     );
                   },

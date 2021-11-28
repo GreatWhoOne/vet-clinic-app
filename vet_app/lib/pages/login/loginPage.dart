@@ -89,6 +89,7 @@ class _LoginPageState extends State<LoginPage> {
 
     var idUser = json.decode(response.body);
 
+    // Add a try/catch
     widget.formattedIdUserName = idUser[0]["NOME"];
   }
 

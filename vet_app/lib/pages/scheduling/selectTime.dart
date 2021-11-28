@@ -11,53 +11,58 @@ class SelectTime extends StatefulWidget {
   final String name;
   final String specialty;
   final String crmv;
-  // final String nameProp;
+  final String idUser;
+  final String userName;
   final String idVet;
 
-  SelectTime({this.date, this.name, this.crmv, this.specialty, this.idVet});
+  SelectTime({
+    this.date,
+    this.name,
+    this.crmv,
+    this.specialty,
+    this.idVet,
+    this.idUser,
+    this.userName,
+  });
 
   @override
   _SelectTimeState createState() => _SelectTimeState();
 }
 
 class _SelectTimeState extends State<SelectTime> {
-  Future registerTimeandDate(dateTime) async {
-    var url = "http://192.168.0.103/flutter-app/registrar.php";
+  Future registerTimeandDate(dateTime, idProp, idVet) async {
+    var url = "http://192.168.0.103/flutter-app/insertDateTimeConsult.php";
     final response = await http.post(
       url,
       body: {
-        "time": dateTime.text,
+        "dateTime": dateTime,
+        "idProp": idProp,
+        "idVet": idVet,
       },
     );
 
-    // var data = json.decode(response.body);
-    // if (data == "Success") {
-    //   Fluttertoast.showToast(
-    //     msg: "Bom",
-    //     toastLength: Toast.LENGTH_SHORT,
-    //     gravity: ToastGravity.CENTER,
-    //     timeInSecForIosWeb: 1,
-    //     backgroundColor: Colors.red,
-    //     textColor: Colors.white,
-    //     fontSize: 16.0,
-    //   );
-    //   Navigator.push(
-    //     context,
-    //     MaterialPageRoute(
-    //       builder: (context) => LoginPage(),
-    //     ),
-    //   );
-    // } else {
-    //   Fluttertoast.showToast(
-    //     msg: "Ruim",
-    //     toastLength: Toast.LENGTH_SHORT,
-    //     gravity: ToastGravity.CENTER,
-    //     timeInSecForIosWeb: 1,
-    //     backgroundColor: Colors.red,
-    //     textColor: Colors.white,
-    //     fontSize: 16.0,
-    //   );
-    // }
+    var data = json.decode(response.body);
+    if (data == "Success") {
+      Fluttertoast.showToast(
+        msg: "Bom",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.CENTER,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.red,
+        textColor: Colors.white,
+        fontSize: 16.0,
+      );
+    } else {
+      Fluttertoast.showToast(
+        msg: "Ruim",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.CENTER,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.red,
+        textColor: Colors.white,
+        fontSize: 16.0,
+      );
+    }
   }
 
   @override
@@ -74,7 +79,7 @@ class _SelectTimeState extends State<SelectTime> {
     String time_1730 = "17:30";
     String resultTime;
     String resultDate;
-    String resultDateTime;
+    String resultDateTimeFormattedBd;
 
     return Scaffold(
       appBar: AppBar(
@@ -172,14 +177,19 @@ class _SelectTimeState extends State<SelectTime> {
                 onPressed: () {
                   resultTime = time_8;
                   resultDate = DateFormat('yyyy-MM-dd').format(widget.date);
-                  resultDateTime = resultTime + ":00" + ' ' + resultDate;
+                  resultDateTimeFormattedBd =
+                      resultDate + ' ' + resultTime + ":00";
 
-                  print("ID_PROPRIETARIO = ");
+                  print("ID_PROPRIETARIO = " + widget.idUser);
                   print("ID_VETERINARIO = " + widget.idVet);
 
-                  print(resultDateTime);
+                  print(resultDateTimeFormattedBd);
 
-                  // registerTimeandDate(resultTime, resultDate);
+                  registerTimeandDate(
+                    resultDateTimeFormattedBd,
+                    widget.idUser,
+                    widget.idVet,
+                  );
                 },
               ),
             ),

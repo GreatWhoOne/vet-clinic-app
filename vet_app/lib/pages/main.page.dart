@@ -16,9 +16,6 @@ class _MainPageState extends State<MainPage> {
   // Funcoes
   GlobalKey<ScaffoldState> _globalKey = GlobalKey<ScaffoldState>();
 
-  // For the carousel_slider
-  // List<String> photos = [];
-
   // render
   @override
   Widget build(BuildContext context) {
@@ -146,8 +143,10 @@ class _MainPageState extends State<MainPage> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (BuildContext contex) =>
-                                  MainSchedulling(),
+                              builder: (BuildContext contex) => MainSchedulling(
+                                idUser: widget.idUser,
+                                userName: widget.userName,
+                              ),
                             ),
                           );
                         },

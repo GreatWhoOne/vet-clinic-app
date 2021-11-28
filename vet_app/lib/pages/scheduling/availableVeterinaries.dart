@@ -7,8 +7,12 @@ import 'package:intl/intl.dart';
 
 class AvailableVeterinaies extends StatefulWidget {
   final DateTime date;
+  final String idUser;
+  final String userName;
 
-  const AvailableVeterinaies({Key key, @required this.date}) : super(key: key);
+  const AvailableVeterinaies(
+      {Key key, @required this.date, this.userName, this.idUser})
+      : super(key: key);
 
   @override
   _AvailableVeterinaiesState createState() => _AvailableVeterinaiesState();
@@ -76,6 +80,8 @@ class _AvailableVeterinaiesState extends State<AvailableVeterinaies> {
                           MaterialPageRoute(
                             builder: (BuildContext contex) => SelectTime(
                               date: widget.date,
+                              idUser: widget.idUser,
+                              userName: widget.userName,
                               idVet: list[index]["ID_VETERINARIO"],
                               name: list[index]["NOME"],
                               crmv: list2[index]["NUM_CRMV"],
