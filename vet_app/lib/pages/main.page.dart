@@ -2,10 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:vet_app/pages/scheduling/mainScheduling.dart';
 import 'package:vet_app/utils/common.dart';
 import 'package:vet_app/utils/consts.dart';
+import 'package:vet_app/pages/scheduling/confirmationScreen.dart';
+
 // import 'package:carousel_slider/carousel_slider.dart';
 
 class MainPage extends StatefulWidget {
   final String idUser;
+
   final String userName;
   MainPage({Key key, @required this.idUser, this.userName}) : super(key: key);
   @override
@@ -76,7 +79,7 @@ class _MainPageState extends State<MainPage> {
                 bottom: 10.0,
               ),
               child: Text(
-                "Olá, ${widget.userName}",
+                "Olá,  ${widget.userName}",
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 25.0,

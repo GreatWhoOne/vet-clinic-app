@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:vet_app/pages/scheduling/confirmationScreen.dart';
 import 'package:vet_app/utils/consts.dart';
 import 'package:vet_app/utils/common.dart';
 import 'package:http/http.dart' as http;
@@ -30,7 +31,7 @@ class SelectTime extends StatefulWidget {
 }
 
 class _SelectTimeState extends State<SelectTime> {
-  Future registerTimeandDate(dateTime, idProp, idVet) async {
+  Future registerTimeandDate(dateTime, idProp, idVet, time) async {
     var url = "http://192.168.0.103/flutter-app/insertDateTimeConsult.php";
     final response = await http.post(
       url,
@@ -43,15 +44,26 @@ class _SelectTimeState extends State<SelectTime> {
 
     var data = json.decode(response.body);
     if (data == "Success") {
-      Fluttertoast.showToast(
-        msg: "Bom",
-        toastLength: Toast.LENGTH_SHORT,
-        gravity: ToastGravity.CENTER,
-        timeInSecForIosWeb: 1,
-        backgroundColor: Colors.red,
-        textColor: Colors.white,
-        fontSize: 16.0,
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (BuildContext contex) => ConfirmationScreen(
+            idUser: widget.idUser,
+            userName: widget.userName,
+            date: widget.date,
+            time: time,
+          ),
+        ),
       );
+      // Fluttertoast.showToast(
+      //   msg: "Bom",
+      //   toastLength: Toast.LENGTH_SHORT,
+      //   gravity: ToastGravity.CENTER,
+      //   timeInSecForIosWeb: 1,
+      //   backgroundColor: Colors.red,
+      //   textColor: Colors.white,
+      //   fontSize: 16.0,
+      // );
     } else {
       Fluttertoast.showToast(
         msg: "Ruim",
@@ -189,10 +201,304 @@ class _SelectTimeState extends State<SelectTime> {
                     resultDateTimeFormattedBd,
                     widget.idUser,
                     widget.idVet,
+                    resultTime,
                   );
                 },
               ),
             ),
+          ),
+          SizedBox(
+            height: setHeight(10.0),
+          ),
+          Container(
+            height: setHeight(50.0),
+            width: setWidth(300.0),
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                stops: [0.3, 1],
+                colors: [
+                  Colors.black54,
+                  Colors.black12,
+                ],
+              ),
+              borderRadius: BorderRadius.all(
+                Radius.circular(10),
+              ),
+            ),
+            child: SizedBox.expand(
+              child: FlatButton(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Text(
+                      time_1030,
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                        fontSize: 20,
+                      ),
+                      textAlign: TextAlign.left,
+                    ),
+                  ],
+                ),
+                onPressed: () {
+                  resultTime = time_1030;
+                  resultDate = DateFormat('yyyy-MM-dd').format(widget.date);
+                  resultDateTimeFormattedBd =
+                      resultDate + ' ' + resultTime + ":00";
+
+                  print("ID_PROPRIETARIO = " + widget.idUser);
+                  print("ID_VETERINARIO = " + widget.idVet);
+
+                  print(resultDateTimeFormattedBd);
+
+                  registerTimeandDate(
+                    resultDateTimeFormattedBd,
+                    widget.idUser,
+                    widget.idVet,
+                    resultTime,
+                  );
+                },
+              ),
+            ),
+          ),
+          SizedBox(
+            height: setHeight(10.0),
+          ),
+          Container(
+            height: setHeight(50.0),
+            width: setWidth(300.0),
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                stops: [0.3, 1],
+                colors: [
+                  Colors.black54,
+                  Colors.black12,
+                ],
+              ),
+              borderRadius: BorderRadius.all(
+                Radius.circular(10),
+              ),
+            ),
+            child: SizedBox.expand(
+              child: FlatButton(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Text(
+                      time_15,
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                        fontSize: 20,
+                      ),
+                      textAlign: TextAlign.left,
+                    ),
+                  ],
+                ),
+                onPressed: () {
+                  resultTime = time_15;
+                  resultDate = DateFormat('yyyy-MM-dd').format(widget.date);
+                  resultDateTimeFormattedBd =
+                      resultDate + ' ' + resultTime + ":00";
+
+                  print("ID_PROPRIETARIO = " + widget.idUser);
+                  print("ID_VETERINARIO = " + widget.idVet);
+
+                  print(resultDateTimeFormattedBd);
+
+                  registerTimeandDate(
+                    resultDateTimeFormattedBd,
+                    widget.idUser,
+                    widget.idVet,
+                    resultTime,
+                  );
+                },
+              ),
+            ),
+          ),
+          SizedBox(
+            height: setHeight(10.0),
+          ),
+          Container(
+            height: setHeight(50.0),
+            width: setWidth(300.0),
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                stops: [0.3, 1],
+                colors: [
+                  Colors.black54,
+                  Colors.black12,
+                ],
+              ),
+              borderRadius: BorderRadius.all(
+                Radius.circular(10),
+              ),
+            ),
+            child: SizedBox.expand(
+              child: FlatButton(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Text(
+                      time_1530,
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                        fontSize: 20,
+                      ),
+                      textAlign: TextAlign.left,
+                    ),
+                  ],
+                ),
+                onPressed: () {
+                  resultTime = time_1530;
+                  resultDate = DateFormat('yyyy-MM-dd').format(widget.date);
+                  resultDateTimeFormattedBd =
+                      resultDate + ' ' + resultTime + ":00";
+
+                  print("ID_PROPRIETARIO = " + widget.idUser);
+                  print("ID_VETERINARIO = " + widget.idVet);
+
+                  print(resultDateTimeFormattedBd);
+
+                  registerTimeandDate(
+                    resultDateTimeFormattedBd,
+                    widget.idUser,
+                    widget.idVet,
+                    resultTime,
+                  );
+                },
+              ),
+            ),
+          ),
+          SizedBox(
+            height: setHeight(10.0),
+          ),
+          Container(
+            height: setHeight(50.0),
+            width: setWidth(300.0),
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                stops: [0.3, 1],
+                colors: [
+                  Colors.black54,
+                  Colors.black12,
+                ],
+              ),
+              borderRadius: BorderRadius.all(
+                Radius.circular(10),
+              ),
+            ),
+            child: SizedBox.expand(
+              child: FlatButton(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Text(
+                      time_1630,
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                        fontSize: 20,
+                      ),
+                      textAlign: TextAlign.left,
+                    ),
+                  ],
+                ),
+                onPressed: () {
+                  resultTime = time_1630;
+                  resultDate = DateFormat('yyyy-MM-dd').format(widget.date);
+                  resultDateTimeFormattedBd =
+                      resultDate + ' ' + resultTime + ":00";
+
+                  print("ID_PROPRIETARIO = " + widget.idUser);
+                  print("ID_VETERINARIO = " + widget.idVet);
+
+                  print(resultDateTimeFormattedBd);
+
+                  registerTimeandDate(
+                    resultDateTimeFormattedBd,
+                    widget.idUser,
+                    widget.idVet,
+                    resultTime,
+                  );
+                },
+              ),
+            ),
+          ),
+          SizedBox(
+            height: setHeight(10.0),
+          ),
+          Container(
+            height: setHeight(50.0),
+            width: setWidth(300.0),
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                stops: [0.3, 1],
+                colors: [
+                  Colors.black54,
+                  Colors.black12,
+                ],
+              ),
+              borderRadius: BorderRadius.all(
+                Radius.circular(10),
+              ),
+            ),
+            child: SizedBox.expand(
+              child: FlatButton(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Text(
+                      time_1730,
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                        fontSize: 20,
+                      ),
+                      textAlign: TextAlign.left,
+                    ),
+                  ],
+                ),
+                onPressed: () {
+                  resultTime = time_1730;
+                  resultDate = DateFormat('yyyy-MM-dd').format(widget.date);
+                  resultDateTimeFormattedBd =
+                      resultDate + ' ' + resultTime + ":00";
+
+                  print("ID_PROPRIETARIO = " + widget.idUser);
+                  print("ID_VETERINARIO = " + widget.idVet);
+
+                  print(resultDateTimeFormattedBd);
+
+                  registerTimeandDate(
+                    resultDateTimeFormattedBd,
+                    widget.idUser,
+                    widget.idVet,
+                    resultTime,
+                  );
+                },
+              ),
+            ),
+          ),
+          SizedBox(
+            height: setHeight(10.0),
           ),
         ],
       ),
