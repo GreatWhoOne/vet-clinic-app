@@ -3,7 +3,6 @@ import 'package:vet_app/pages/scheduling/selectTime.dart';
 import 'package:vet_app/utils/consts.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import 'package:intl/intl.dart';
 
 class AvailableVeterinaies extends StatefulWidget {
   final DateTime date;
@@ -72,7 +71,7 @@ class _AvailableVeterinaiesState extends State<AvailableVeterinaies> {
                           '\nCRMV - ' +
                           list2[index]["NUM_CRMV"]),
                       subtitle: Text(
-                        list2[index]['NOME'] + " - " + "Olá, ${widget.date}",
+                        list2[index]['NOME'],
                       ),
                       onTap: () {
                         Navigator.push(
@@ -101,5 +100,3 @@ class _AvailableVeterinaiesState extends State<AvailableVeterinaies> {
     );
   }
 }
-
-// DateFormat('dd-MM-yyyy').format(date),

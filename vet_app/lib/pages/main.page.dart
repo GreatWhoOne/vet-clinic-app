@@ -181,30 +181,6 @@ class _MainPageState extends State<MainPage> {
   }
 }
 
-// Widget buildProfileImage() {
-//   return CircleAvatar(
-//     radius: 50.0,
-//     backgroundImage: AssetImage("assets/woman.png"),
-//   );
-// }
-
-// Widget userName() {
-//   return Padding(
-//     padding: EdgeInsets.only(
-//       bottom: 10.0,
-//     ),
-//     child: Text(
-//       name,
-//       "Olá, ",
-//       style: TextStyle(
-//         fontWeight: FontWeight.bold,
-//         fontSize: 25.0,
-//         color: Colors.grey,
-//       ),
-//     ),
-//   );
-// }
-
 Widget summaryInformations() {
   return Padding(
     padding: EdgeInsets.only(
@@ -346,68 +322,6 @@ Widget medicineButton(h, w) {
     ),
   );
 }
-
-// Widget schedulingButton(h, w) {
-//   return Padding(
-//     padding: EdgeInsets.only(
-//       bottom: 10.0,
-//     ),
-//     child: Container(
-//       height: h,
-//       width: w,
-//       decoration: BoxDecoration(
-//         boxShadow: [
-//           BoxShadow(
-//             spreadRadius: 3,
-//             blurRadius: 5,
-//             offset: Offset(2, 4),
-//             color: Colors.grey.shade300,
-//           ),
-//         ],
-//         color: AppConsts.blueBasic,
-//         borderRadius: BorderRadius.all(
-//           Radius.circular(10),
-//         ),
-//       ),
-//       child: SizedBox.expand(
-//         child: FlatButton(
-//           child: Column(
-//             mainAxisAlignment: MainAxisAlignment.center,
-//             children: <Widget>[
-//               Padding(
-//                 padding: EdgeInsets.only(bottom: 10),
-//                 child: SizedBox(
-//                   child: Image.asset("assets/icons/calendar.png"),
-//                   height: 48,
-//                   width: 48,
-//                 ),
-//               ),
-//               FittedBox(
-//                 child: Text(
-//                   "Agendamentos",
-//                   style: TextStyle(
-//                     fontWeight: FontWeight.bold,
-//                     color: Colors.white,
-//                     fontSize: 17,
-//                   ),
-//                   textAlign: TextAlign.center,
-//                 ),
-//               )
-//             ],
-//           ),
-//           onPressed: () {
-//             Navigator.push(
-//               context,
-//               MaterialPageRoute(
-//                 builder: (BuildContext contex) => MainPage(),
-//               ),
-//             );
-//           },
-//         ),
-//       ),
-//     ),
-//   );
-// }
 
 Widget detailedInformationButton(h, w) {
   return Padding(

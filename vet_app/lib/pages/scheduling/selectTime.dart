@@ -56,7 +56,7 @@ class _SelectTimeState extends State<SelectTime> {
         ),
       );
       // Fluttertoast.showToast(
-      //   msg: "Bom",
+      //   msg: "Erro ao marcar consulta",
       //   toastLength: Toast.LENGTH_SHORT,
       //   gravity: ToastGravity.CENTER,
       //   timeInSecForIosWeb: 1,
@@ -505,13 +505,3 @@ class _SelectTimeState extends State<SelectTime> {
     );
   }
 }
-
-//  Text(
-//             "Tela de horários" +
-//                 "Olá, ${widget.date}, \n${widget.name}, \n${widget.specialty}, \n${widget.crmv}",
-//           ),
-
-//  var textFormField = TextFormField(
-// initialValue: "$dateSelected",
-
-// resultDate = DateFormat('dd-MM-yyyy').format(widget.date);

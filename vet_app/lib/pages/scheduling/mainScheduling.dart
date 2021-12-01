@@ -147,7 +147,10 @@ class _MainSchedullingState extends State<MainSchedulling> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (BuildContext context) => SchedullingLog(),
+                        builder: (BuildContext context) => SchedullingLog(
+                          idUser: widget.idUser,
+                          userName: widget.userName,
+                        ),
                       ),
                     );
                   },
