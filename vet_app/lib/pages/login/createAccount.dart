@@ -5,6 +5,7 @@ import 'package:vet_app/utils/consts.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:intl/intl.dart';
 
 import 'loginPage.dart';
 
@@ -17,10 +18,33 @@ class CreatAccount extends StatefulWidget {
 
 class _CreatAccountState extends State<CreatAccount> {
   TextEditingController nomeUsuario = new TextEditingController();
-  // TextEditingController cpf = new TextEditingController();
-  // TextEditingController email = new TextEditingController();
-  // TextEditingController endereco = new TextEditingController();
+  TextEditingController cpf = new TextEditingController();
+  TextEditingController dataNasc = new TextEditingController();
+  TextEditingController email = new TextEditingController();
   TextEditingController senha = new TextEditingController();
+
+  List gender = ["M", "F", "O"];
+  String select;
+
+  Row addRadioButton(int btnValue, String title) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: <Widget>[
+        Radio(
+          activeColor: Theme.of(context).primaryColor,
+          value: gender[btnValue],
+          groupValue: select,
+          onChanged: (value) {
+            setState(() {
+              print(value);
+              select = value;
+            });
+          },
+        ),
+        Text(title)
+      ],
+    );
+  }
 
   Future register() async {
     var url = "http://192.168.0.103/flutter-app/registrar.php";
@@ -28,6 +52,10 @@ class _CreatAccountState extends State<CreatAccount> {
       url,
       body: {
         "nome": nomeUsuario.text,
+        "cpf": cpf.text,
+        "sexo": select,
+        "dataNasc": dataNasc.text,
+        "email": email.text,
         "senha": senha.text,
       },
     );
@@ -35,7 +63,7 @@ class _CreatAccountState extends State<CreatAccount> {
     var data = json.decode(response.body);
     if (data == "Success") {
       Fluttertoast.showToast(
-        msg: "Bom",
+        msg: "Usuário Cadastrado com sucesso",
         toastLength: Toast.LENGTH_SHORT,
         gravity: ToastGravity.CENTER,
         timeInSecForIosWeb: 1,
@@ -51,7 +79,7 @@ class _CreatAccountState extends State<CreatAccount> {
       );
     } else {
       Fluttertoast.showToast(
-        msg: "Ruim",
+        msg: "Não foi possível cadastrar o usuário",
         toastLength: Toast.LENGTH_SHORT,
         gravity: ToastGravity.CENTER,
         timeInSecForIosWeb: 1,
@@ -61,26 +89,26 @@ class _CreatAccountState extends State<CreatAccount> {
       );
     }
 
-    // if (response.body == "CORRETO") {
-    //   Fluttertoast.showToast(
-    //     msg: "Bom",
-    //     toastLength: Toast.LENGTH_SHORT,
-    //     gravity: ToastGravity.CENTER,
-    //     timeInSecForIosWeb: 1,
-    //     backgroundColor: Colors.red,
-    //     textColor: Colors.white,
-    //     fontSize: 16.0,
-    //   );
-    // } else if (response.body == "ERROR") {
-    //   Fluttertoast.showToast(
-    //       msg: "Ruim",
-    //       toastLength: Toast.LENGTH_SHORT,
-    //       gravity: ToastGravity.CENTER,
-    //       timeInSecForIosWeb: 1,
-    //       backgroundColor: Colors.red,
-    //       textColor: Colors.white,
-    //       fontSize: 16.0);
-    // }
+    if (response.body == "CORRETO") {
+      Fluttertoast.showToast(
+        msg: "Bom",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.CENTER,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.red,
+        textColor: Colors.white,
+        fontSize: 16.0,
+      );
+    } else if (response.body == "ERROR") {
+      Fluttertoast.showToast(
+          msg: "Ruim",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.CENTER,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16.0);
+    }
   }
 
   @override
@@ -104,7 +132,7 @@ class _CreatAccountState extends State<CreatAccount> {
       body: Center(
         child: Container(
           padding: EdgeInsets.only(
-            top: 80,
+            top: 50,
             left: 40,
             right: 40,
           ),
@@ -128,34 +156,58 @@ class _CreatAccountState extends State<CreatAccount> {
                   fontSize: 20,
                 ),
               ),
-              // TextFormField(
-              //   controller: email,
-              //   keyboardType: TextInputType.text,
-              //   decoration: InputDecoration(
-              //     prefixIcon: Icon(Icons.email),
-              //     labelText: "E-mail",
-              //     labelStyle: TextStyle(
-              //       color: Colors.black38,
-              //       fontWeight: FontWeight.w400,
-              //       fontSize: 20,
-              //     ),
-              //   ),
-              //   style: TextStyle(fontSize: 20),
-              // ),
-              // TextFormField(
-              //   controller: cpf,
-              //   keyboardType: TextInputType.text,
-              //   decoration: InputDecoration(
-              //     prefixIcon: Icon(Icons.location_on),
-              //     labelText: "CPF",
-              //     labelStyle: TextStyle(
-              //       color: Colors.black38,
-              //       fontWeight: FontWeight.w400,
-              //       fontSize: 20,
-              //     ),
-              //   ),
-              //   style: TextStyle(fontSize: 20),
-              // ),
+              Row(
+                children: <Widget>[
+                  addRadioButton(0, 'Masculino'),
+                  addRadioButton(1, 'Feminino'),
+                  addRadioButton(2, 'Outro'),
+                ],
+              ),
+              TextFormField(
+                controller: cpf,
+                keyboardType: TextInputType.text,
+                decoration: InputDecoration(
+                  prefixIcon: Icon(Icons.account_box),
+                  labelText: "CPF",
+                  labelStyle: TextStyle(
+                    color: Colors.black38,
+                    fontWeight: FontWeight.w400,
+                    fontSize: 20,
+                  ),
+                ),
+                style: TextStyle(fontSize: 20),
+              ),
+              TextFormField(
+                controller: dataNasc,
+                autofocus: true,
+                keyboardType: TextInputType.text,
+                decoration: InputDecoration(
+                  prefixIcon: Icon(Icons.cake),
+                  labelText: "Data de nascimento",
+                  labelStyle: TextStyle(
+                    color: Colors.black38,
+                    fontWeight: FontWeight.w400,
+                    fontSize: 20,
+                  ),
+                ),
+                style: TextStyle(
+                  fontSize: 20,
+                ),
+              ),
+              TextFormField(
+                controller: email,
+                keyboardType: TextInputType.text,
+                decoration: InputDecoration(
+                  prefixIcon: Icon(Icons.email),
+                  labelText: "E-mail",
+                  labelStyle: TextStyle(
+                    color: Colors.black38,
+                    fontWeight: FontWeight.w400,
+                    fontSize: 20,
+                  ),
+                ),
+                style: TextStyle(fontSize: 20),
+              ),
               TextFormField(
                 obscureText: true,
                 enableSuggestions: false,
@@ -174,7 +226,7 @@ class _CreatAccountState extends State<CreatAccount> {
                 style: TextStyle(fontSize: 20),
               ),
               SizedBox(
-                height: setHeight(80.0),
+                height: setHeight(20.0),
               ),
               Container(
                 height: 60,
@@ -210,6 +262,7 @@ class _CreatAccountState extends State<CreatAccount> {
                       ],
                     ),
                     onPressed: () {
+                      // dateFormatted = DateFormat('dd-MM-yyyy').format(dataNasc),
                       register();
                     },
                   ),

@@ -5,6 +5,8 @@ import 'package:vet_app/utils/common.dart';
 import 'dart:convert';
 import 'package:intl/intl.dart';
 
+import 'newScheduling.dart';
+
 class ConfirmationScreen extends StatefulWidget {
   final String idUser;
   final String userName;
@@ -21,7 +23,7 @@ class _ConfirmationScreenState extends State<ConfirmationScreen> {
   Widget build(BuildContext context) {
     AppConsts.setWidhtSize(MediaQuery.of(context).size.width);
     AppConsts.setHeightSize(MediaQuery.of(context).size.height);
-    String dateFormatterd = DateFormat('dd-MM-yyyy').format(widget.date);
+    String dateFormatterd = DateFormat('dd/MM/yyyy').format(widget.date);
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -45,20 +47,6 @@ class _ConfirmationScreenState extends State<ConfirmationScreen> {
             child: Container(
               height: setHeight(120.0),
               width: setWidth(300.0),
-              // decoration: BoxDecoration(
-              //   boxShadow: [
-              //     BoxShadow(
-              //       spreadRadius: 3,
-              //       blurRadius: 5,
-              //       offset: Offset(2, 4),
-              //       color: Colors.grey.shade300,
-              //     ),
-              //   ],
-              //   color: Colors.white,
-              //   borderRadius: BorderRadius.all(
-              //     Radius.circular(10),
-              //   ),
-              // ),
               child: SizedBox.expand(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -125,7 +113,17 @@ class _ConfirmationScreenState extends State<ConfirmationScreen> {
                     ),
                   ],
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => NewSchedulling(
+                        idUser: widget.idUser,
+                        userName: widget.userName,
+                      ),
+                    ),
+                  );
+                },
               ),
             ),
           ),

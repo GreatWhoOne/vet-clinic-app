@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:vet_app/pages/login/splash.dart';
 import 'package:vet_app/pages/main.page.dart';
 import 'dart:convert';
 
@@ -46,7 +47,7 @@ class _LoginPageState extends State<LoginPage> {
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => MainPage(
+          builder: (context) => Splash(
               idUser: widget.formattedIdUser.toString(),
               userName: widget.formattedIdUserName),
         ),

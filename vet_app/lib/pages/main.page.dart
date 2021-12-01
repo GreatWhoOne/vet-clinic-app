@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:vet_app/pages/scheduling/mainScheduling.dart';
 import 'package:vet_app/utils/common.dart';
 import 'package:vet_app/utils/consts.dart';
-import 'package:vet_app/pages/scheduling/confirmationScreen.dart';
-
-// import 'package:carousel_slider/carousel_slider.dart';
 
 class MainPage extends StatefulWidget {
   final String idUser;
@@ -33,14 +31,18 @@ class _MainPageState extends State<MainPage> {
         child: Scaffold(
       key: _globalKey,
       drawer: Drawer(
-        child: ListView(children: [
-          ListTile(title: Text('page 1')),
-          Divider(thickness: 2),
-          ListTile(title: Text('page 2')),
-          Divider(thickness: 2),
-          ListTile(title: Text('page 3')),
-          Divider(thickness: 2),
-        ]),
+        child: ListView(
+          children: [
+            ListTile(
+                title: Text(
+                  'Fechar aplicativo',
+                ),
+                onTap: () {
+                  SystemNavigator.pop();
+                }),
+            Divider(thickness: 2),
+          ],
+        ),
       ),
       body: Padding(
         padding: EdgeInsets.only(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:vet_app/pages/scheduling/schedullingLog.dart';
 import 'package:vet_app/utils/common.dart';
 import 'package:vet_app/utils/consts.dart';
 
@@ -142,7 +143,14 @@ class _MainSchedullingState extends State<MainSchedulling> {
                       )
                     ],
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (BuildContext context) => SchedullingLog(),
+                      ),
+                    );
+                  },
                 ),
               ),
             ),
