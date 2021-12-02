@@ -62,7 +62,7 @@ class _AvailableVeterinaiesState extends State<AvailableVeterinaies> {
           if (snapshot.hasError) print(snapshot.error);
           return snapshot.hasData
               ? ListView.builder(
-                  itemCount: snapshot.data.length,
+                  shrinkWrap: true,
                   itemBuilder: (context, index) {
                     var list = snapshot.data[0];
                     var list2 = snapshot.data[1];
@@ -91,6 +91,7 @@ class _AvailableVeterinaiesState extends State<AvailableVeterinaies> {
                       },
                     );
                   },
+                  itemCount: snapshot.data.length,
                 )
               : Center(
                   child: CircularProgressIndicator(),
